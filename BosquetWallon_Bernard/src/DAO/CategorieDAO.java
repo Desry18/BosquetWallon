@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Categorie;
+import POJO.Spectacle;
 public class CategorieDAO  extends DAO<Categorie>{
 	public CategorieDAO(Connection conn) {
 		super(conn);
@@ -97,6 +98,12 @@ public class CategorieDAO  extends DAO<Categorie>{
 
 	@Override
 	public Categorie find(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Spectacle> findS(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

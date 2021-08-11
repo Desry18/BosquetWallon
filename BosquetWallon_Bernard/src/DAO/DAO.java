@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import POJO.Categorie;
+import POJO.Spectacle;
 
 public abstract class DAO<T> {
 	protected Connection connect = null;
@@ -23,4 +24,7 @@ public abstract class DAO<T> {
 	public abstract T find (String nom);
 
 	public abstract List<T> getAll(int i);
+
+	public abstract List<Spectacle> findS(int id);
+
 }

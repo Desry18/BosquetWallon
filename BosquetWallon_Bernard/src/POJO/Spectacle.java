@@ -16,6 +16,16 @@ public class Spectacle {
 	private List<Representation> representations;
 	private int IdSpectacle;
 	
+	public Spectacle(String Titre, int idSpectacle, int nbrPlaceMax) {
+		titre = Titre;
+		nbrPlaceParClient = nbrPlaceMax;
+		IdSpectacle = idSpectacle;
+	}
+	
+	public Spectacle() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getTitre() {
 		return titre;
 	}
@@ -52,6 +62,12 @@ public class Spectacle {
 	public void setIdSpectacle(int idSpectacle) {
 		IdSpectacle = idSpectacle;
 	}
+
+	@Override
+	public String toString() {
+		return titre + " || " + nbrPlaceParClient + " places dispo";
+	}
+
 
 
 }

@@ -16,18 +16,10 @@ public class test2 {
 		// TODO Auto-generated method stub
 		String a;
 		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
-		DAO<Categorie> DAOCategorie = adf.getCategorieDAO();
-		DAO<Personne> DAOPersonne = adf.getPersonneDAO();
-		Categorie cat;
-		Personne p = new Artiste();
-		p = DAOPersonne.find(7);
-		cat = DAOCategorie.find(8);
-		List<Categorie> liste = DAOCategorie.getAll(10);
-		a = liste.get(0).toString();
-		System.out.println("couilles " + a);
-		System.out.println("couilles " + liste.get(1).toString());
-
-		JOptionPane.showMessageDialog(null, p.getEmail());
+		
+		//Artiste ar = new Artiste();
+		//ar.getAllSpectacle(7);
+		//System.out.println(ar.getSpectacles().toString());
 		
 		
 	}

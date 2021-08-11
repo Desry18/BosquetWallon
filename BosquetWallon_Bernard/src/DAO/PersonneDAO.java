@@ -11,6 +11,7 @@ import POJO.Client;
 import POJO.Gestionnaire;
 import POJO.Organisateur;
 import POJO.Personne;
+import POJO.Spectacle;
 
 public class PersonneDAO extends DAO<Personne>{
 
@@ -113,6 +114,12 @@ public class PersonneDAO extends DAO<Personne>{
 			e.printStackTrace();
 		}
 		return personne;
+	}
+
+	@Override
+	public List<Spectacle> findS(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
