@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import POJO.Artiste;
+import POJO.Client;
+import POJO.Organisateur;
+import POJO.Personne;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
@@ -13,6 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -130,6 +137,48 @@ public class InscriptionFrame extends JFrame {
 		contentPane.add(lblNewLabel_5);
 		
 		btn_inscription = new JButton("S'inscrire");
+		btn_inscription.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				
+
+				if(nom_insc.getText().isEmpty() || prenom_insc.getText().isEmpty() || email_insc.getText().isEmpty() || adresse_insc.getText().isEmpty() || mdp_insc.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs");			
+					}
+				else {
+					String nom = nom_insc.getText();
+					String mail = email_insc.getText();
+					String adr = adresse_insc.getText();
+					String mdp = mdp_insc.getText();
+					String prenom = prenom_insc.getText();
+					switch(comboBox.getSelectedItem().toString()) {
+					
+					case "Artiste" : 
+						Artiste a = new Artiste(nom,prenom,mail,adr,mdp);
+						JOptionPane.showMessageDialog(null, a.toString());	
+						a.creer();
+						break;
+						
+					case "Client" : 
+						Client c = new Client (nom,prenom,mail,adr,mdp);
+						JOptionPane.showMessageDialog(null, "Client");	
+						c.creer();
+						break;
+						
+					case "Organisateur" : 	
+						Organisateur o = new Organisateur(nom,prenom,mail,adr,mdp);
+						JOptionPane.showMessageDialog(null, "Organisateur");		
+						o.creer();
+						break;
+
+
+					}
+					
+
+
+				}
+			}
+		});
 		btn_inscription.setBounds(179, 192, 89, 23);
 		contentPane.add(btn_inscription);
 		

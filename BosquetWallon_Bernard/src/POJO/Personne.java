@@ -60,6 +60,13 @@ public abstract class Personne {
 	public Personne() {
 		// TODO Auto-generated constructor stub
 	}
+	public Personne (String nom, String prenom, String email, String adresse, String mdp) {
+		Nom = nom;
+		Prenom = prenom;
+		Email = email;
+		Adresse = adresse;
+		Mdp = mdp;	
+	}
 	public Personne find()
 	{
 		return personneDAO.find(this.Email);
@@ -74,6 +81,11 @@ public abstract class Personne {
 	public boolean verifierMotDePasse(String mdp)
 	{
 		return this.getMdp().equals(mdp);
+	}
+	
+	public boolean creer() {
+		personneDAO.create(this);
+		return true;
 	}
 	
 }

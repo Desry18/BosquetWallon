@@ -15,6 +15,11 @@ public class Client extends Personne{
 	public Client() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public Client(String nom, String prenom, String email, String adresse, String mdp) {
+		super(nom, prenom, email, adresse, mdp);
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

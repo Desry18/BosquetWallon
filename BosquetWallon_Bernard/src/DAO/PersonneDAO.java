@@ -20,8 +20,41 @@ public class PersonneDAO extends DAO<Personne>{
 
 	@Override
 	public boolean create(Personne obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if (find(obj.getEmail()) == null) {
+				if(obj instanceof Artiste) {
+				String insertion = "INSERT INTO Personne (Nom,Prenom,Adresse,Email,MotDePasse,Discriminator) "
+						+ "values ('" + obj.getNom() + "','" + obj.getPrenom() + "','" + obj.getAdresse() + "','"
+						+ obj.getEmail() + "','" + obj.getMdp() + "','Artiste');";
+				System.out.println(insertion);
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
+				}
+				else if(obj instanceof Client) {
+					String insertion = "INSERT INTO Personne (Nom,Prenom,Adresse,Email,MotDePasse,Discriminator) "
+							+ "values ('" + obj.getNom() + "','" + obj.getPrenom() + "','" + obj.getAdresse() + "','"
+							+ obj.getEmail() + "','" + obj.getMdp() + "','Client');";
+					System.out.println(insertion);
+					connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+							.executeUpdate(insertion);
+				}
+				else if(obj instanceof Organisateur) {
+					String insertion = "INSERT INTO Personne (Nom,Prenom,Adresse,Email,MotDePasse,Discriminator) "
+							+ "values ('" + obj.getNom() + "','" + obj.getPrenom() + "','" + obj.getAdresse() + "','"
+							+ obj.getEmail() + "','" + obj.getMdp() + "','Organisateur');";
+					System.out.println(insertion);
+					connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+							.executeUpdate(insertion);
+					}	
+			} else {
+				System.out.println("L'objet existe déja");
+			}
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

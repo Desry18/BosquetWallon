@@ -106,17 +106,20 @@ public class ConnexionFrame extends JFrame {
 				else if (p != null) {
 					if (p.verifierMotDePasse(mdp)) {
 						if (p instanceof Artiste) {
+							AccueilArtiste aart = new AccueilArtiste((Artiste) p);
+							dispose();
+							aart.setVisible(true);
 							JOptionPane.showMessageDialog(null, "Artiste");
 						} else if (p instanceof Client) {
-							// menuClient = new MenuClient((Client) p);
-							// dispose();
-							// menuClient.setVisible(true);
+							 AccueilClient acli= new AccueilClient((Client) p);
+							 dispose();
+							 acli.setVisible(true);
 							JOptionPane.showMessageDialog(null, "Client");
 
 						} else if (p instanceof Organisateur) {
-							// creationSpectacle = new MenuOrganisateur((Organisateur) p);
-							// dispose();
-							// creationSpectacle.setVisible(true);
+							AccueilOrga aorga = new AccueilOrga((Organisateur) p);
+							dispose();
+							aorga.setVisible(true);
 							JOptionPane.showMessageDialog(null, "Orga");
 
 						} else {

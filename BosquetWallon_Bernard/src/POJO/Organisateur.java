@@ -23,7 +23,15 @@ public class Organisateur extends Personne{
 		super(nom, prenom, email, adresse, mdp, id);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Organisateur(String nom, String prenom, String email, String adresse, String mdp) {
+		super(nom, prenom, email, adresse, mdp);
+		// TODO Auto-generated constructor stub
+	}
 	
+	public Organisateur() {
+		
+	}
 	
 	
 	
