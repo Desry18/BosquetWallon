@@ -9,6 +9,7 @@ import POJO.Commande;
 import POJO.Configuration;
 import POJO.Gestionnaire;
 import POJO.Organisateur;
+import POJO.Personne;
 import POJO.Place;
 import POJO.PlanningSalle;
 import POJO.Representation;
@@ -86,5 +87,11 @@ public class DAOFactory extends AbstractDAOFactory{
 	public DAO<Spectacle> getSpectacleDAO() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public DAO<Personne> getPersonneDAO() {
+		// TODO Auto-generated method stub
+		return new PersonneDAO(conn);
 	}
 }

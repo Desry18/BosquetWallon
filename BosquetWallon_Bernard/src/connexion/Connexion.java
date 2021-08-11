@@ -14,7 +14,6 @@ public class Connexion {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			String url = "jdbc:ucanaccess://./BosquetWallonDB.accdb";
 			instance = DriverManager.getConnection(url);
-			JOptionPane.showMessageDialog(null, "Connecté");
 
 		} catch (ClassNotFoundException ex) {
 			JOptionPane.showMessageDialog(null, "Classe de driver introuvable" + ex.getMessage());

@@ -6,10 +6,16 @@ import DAO.DAO;
 public class Artiste extends Personne{
 	AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	DAO<Artiste> artisteDAO = adf.getArtisteDAO();
-	public Artiste() {
-		super();
+	
+	public Artiste(String nom, String prenom, String email, String adresse, String mdp, int id) {
+		super(nom, prenom, email, adresse, mdp, id);
 		// TODO Auto-generated constructor stub
 	}
 
+	public Artiste() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	
 }

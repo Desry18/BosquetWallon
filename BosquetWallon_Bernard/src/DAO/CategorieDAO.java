@@ -94,4 +94,10 @@ public class CategorieDAO  extends DAO<Categorie>{
 		}
 		return listes;
 	}
+
+	@Override
+	public Categorie find(String nom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -7,16 +7,10 @@ public abstract class AbstractDAOFactory {
 	
 	
 	
-	public static AbstractDAOFactory getFactory(int type){
-		switch(type){
-		case DAO_FACTORY:
-			return new DAOFactory();
-			default:
-				return null;
-		}
-	}
+
 	
 	public abstract DAO<Categorie> getCategorieDAO();
+	
 	public abstract DAO<Artiste> getArtisteDAO();
 
 	public abstract DAO<Client> getClientDAO();
@@ -38,4 +32,15 @@ public abstract class AbstractDAOFactory {
 	public abstract DAO<Reservation> getReservationDAO();
 
 	public abstract DAO<Spectacle> getSpectacleDAO();
+
+	public abstract DAO<Personne> getPersonneDAO();
+	
+	public static AbstractDAOFactory getFactory(int type){
+		switch(type){
+		case DAO_FACTORY:
+			return new DAOFactory();
+			default:
+				return null;
+		}
+	}
 }

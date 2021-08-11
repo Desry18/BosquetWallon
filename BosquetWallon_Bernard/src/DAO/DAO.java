@@ -19,6 +19,8 @@ public abstract class DAO<T> {
 	public abstract boolean update(T obj);
 	
 	public abstract T find(int Id);
+	
+	public abstract T find (String nom);
 
-	public abstract List<Categorie> getAll(int i);
+	public abstract List<T> getAll(int i);
 }

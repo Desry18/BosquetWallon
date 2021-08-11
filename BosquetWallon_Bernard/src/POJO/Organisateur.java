@@ -18,6 +18,11 @@ public class Organisateur extends Personne{
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+
+	public Organisateur(String nom, String prenom, String email, String adresse, String mdp, int id) {
+		super(nom, prenom, email, adresse, mdp, id);
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

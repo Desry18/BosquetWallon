@@ -6,6 +6,7 @@ import DAO.DAO;
 public class Categorie {
 	AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 	DAO<Categorie> categorieDAO = adf.getCategorieDAO();
+	
 	private String type;
 	private double prix;
 	private int nbrPlaceDispo;
