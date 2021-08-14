@@ -65,7 +65,7 @@ public class RepresentationDAO extends DAO<Representation>{
 				while(result.next()) {
 					Representation representation = new Representation(result.getTimestamp("HeureDebut"), result.getTimestamp("HeureFin"), result.getDate("Date"), result.getInt("IdRepresentation"), result.getTimestamp("HeureOuverture"));
 					lr.add(representation);
-				}	
+				}	 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

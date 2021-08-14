@@ -16,6 +16,16 @@ public class PlanningSalle {
 	private List<Spectacle> spectacle;
 	
 	
+	public PlanningSalle(java.sql.Date dateDebut, java.sql.Date dateFin) {
+		dateDebutReservation = dateDebut;
+		dateFinReservation = dateFin;
+	}
+	public PlanningSalle(java.sql.Date date, java.sql.Date date2, int Id) {
+		dateDebutReservation = date;
+		dateFinReservation = date2;
+		id = Id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -39,6 +49,49 @@ public class PlanningSalle {
 	}
 	public void setSpectacle(List<Spectacle> spectacle) {
 		this.spectacle = spectacle;
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public boolean verifDates() {
+		List<PlanningSalle> liste = planningSalleDAO.getAll();
+		boolean verif = false;
+		if(liste.size()==0)
+		{
+			return true;
+		}
+		else
+		{
+			for(var planning : liste)
+			{
+				Date dateDebut = new Date(planning.dateDebutReservation.getYear(),planning.dateDebutReservation.getMonth(),planning.dateDebutReservation.getDate());
+				Date dateFin = new Date(planning.dateFinReservation.getYear(),planning.dateFinReservation.getMonth(),planning.dateFinReservation.getDate());
+				Date thisDateDebut = new Date(this.dateDebutReservation.getYear(),this.dateDebutReservation.getMonth(),this.dateDebutReservation.getDate());
+				Date thisDateFin = new Date(this.dateFinReservation.getYear(),this.dateFinReservation.getMonth(),this.dateFinReservation.getDate());
+				
+				long debut = dateDebut.getTime();
+				long fin = dateFin.getTime();
+				long thisDebut = thisDateDebut.getTime();
+				long thisFin = thisDateFin.getTime();
+				
+				if((thisDebut > debut && thisDebut < fin) || (thisFin > debut && thisFin < fin)||(thisDebut < debut && thisFin > fin))
+				{
+						return false;
+				}
+				else
+				{
+					if(thisDebut==debut && thisFin==fin)
+					{
+						return false;
+					}
+					else
+					{
+						verif = true;
+					}
+				}
+			}
+		}
+		return verif;
 	}
 	
 	

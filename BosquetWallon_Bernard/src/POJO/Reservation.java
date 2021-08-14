@@ -13,6 +13,12 @@ public class Reservation {
 	private String statut;
 	private double prix;
 	private PlanningSalle planningSalle;
+	private Organisateur o;
+	public Reservation(PlanningSalle planning, Organisateur orga) {
+		planningSalle = planning;
+		o = orga;
+		
+	}
 	public double getAccompte() {
 		return accompte;
 	}

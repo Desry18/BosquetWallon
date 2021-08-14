@@ -8,12 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import POJO.Organisateur;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import POJO.PlanningSalle;
 
-public class AccueilOrga extends JFrame {
+public class ReservationFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -35,28 +32,16 @@ public class AccueilOrga extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param p 
+	 * @param planning 
+	 * @param o 
 	 */
-	public AccueilOrga(Organisateur p) {
+	public ReservationFrame(Organisateur o, PlanningSalle planning) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Organisateur : " + p.getPrenom() + " " + p.getNom());
-		lblNewLabel.setBounds(10, 11, 256, 14);
-		contentPane.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Reserver Salle");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PlanningFrame frame = new PlanningFrame(p);
-				frame.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(242, 227, 182, 23);
-		contentPane.add(btnNewButton);
 	}
+
 }

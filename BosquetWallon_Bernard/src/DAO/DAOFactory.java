@@ -67,7 +67,7 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<PlanningSalle> getPlanningSalleDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PlanningSalleDAO(conn);
 	}
 
 	@Override
