@@ -37,13 +37,13 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<Commande> getCommandeDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CommandeDAO(conn);
 	}
 
 	@Override
 	public DAO<Configuration> getConfigurationDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ConfigurationDAO(conn);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<Place> getPlaceDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new PlaceDAO(conn);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<Representation> getRepresentationDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new RepresentationDAO(conn);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<Spectacle> getSpectacleDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SpectacleDAO(conn);
 	}
 
 	@Override

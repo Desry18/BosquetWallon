@@ -16,6 +16,12 @@ public abstract class Personne {
 	protected int Id;
 	
 	
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
 	public String getNom() {
 		return Nom;
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Categorie;
+import POJO.Representation;
 import POJO.Spectacle;
 public class CategorieDAO  extends DAO<Categorie>{
 	public CategorieDAO(Connection conn) {
@@ -102,8 +103,36 @@ public class CategorieDAO  extends DAO<Categorie>{
 		return null;
 	}
 
+
+
 	@Override
-	public List<Spectacle> findS(int id) {
+	public List<Categorie> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Categorie> findAll(int id) {
+	List<Categorie> lc = new ArrayList<Categorie>();
+	
+		
+		try {
+	
+			String query = "SELECT Type, Prix, NombrePlaceDispo, NombrePlaceMax, IdCategorie FROM Categorie WHERE IdConfiguration = " + id + ";";
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery(query);
+				while(result.next()) {
+					Categorie cat = new Categorie(result.getString("Type"), result.getDouble("Prix"), result.getInt("NombrePlaceDispo"), result.getInt("NombrePlaceMax"), result.getInt("IdCategorie"));
+					lc.add(cat);
+				}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lc;
+	}
+
+	@Override
+	public Categorie find(Categorie t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

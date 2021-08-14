@@ -1,5 +1,7 @@
 package POJO;
 
+import java.util.List;
+
 import DAO.AbstractDAOFactory;
 import DAO.DAO;
 
@@ -71,4 +73,8 @@ public class Categorie {
 	{
 		categorieDAO.update(this);
 	}*/
+	public List<Categorie> findAll(int id) {
+		return categorieDAO.findAll(id);
+	}
+	
 }

@@ -53,13 +53,57 @@ public class SpectacleDAO extends DAO<Spectacle>{
 	
 		}
 
+
 	@Override
-	public List<Spectacle> findS(int id) {
+	public List<Spectacle> getAll() {
+	List<Spectacle> ls = new ArrayList<Spectacle>();
+	
+		
+		try {
+	
+			String query = "SELECT Titre, IdSpectacle, NbrePlaceMAx FROM Spectacle ;";
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery(query);
+				while(result.next()) {
+					Spectacle spectacle = new Spectacle(result.getString("Titre"), result.getInt("IdSpectacle"), result.getInt("NbrePlaceMax"));
+					ls.add(spectacle);
+				}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	}
+
+	@Override
+	public List<Spectacle> findAll(int id) {
+	List<Spectacle> ls = new ArrayList<Spectacle>();
+	
+		
+		try {
+	
+			String query = "SELECT Titre, s.IdSpectacle, NbrePlaceMax from Spectacle s INNER JOIN ArtisteSpectacle a ON a.Idspectacle = s.IdSpectacle WHERE IdArtiste = " + id + ";";
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery(query);
+				while(result.next()) {
+					Spectacle spectacle = new Spectacle(result.getString("Titre"), result.getInt("IdSpectacle"), result.getInt("NbrePlaceMax"));
+					ls.add(spectacle);
+				}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	}
+
+	@Override
+	public Spectacle find(Spectacle t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
-	
 
 }
+
+	
+
+	
+
+

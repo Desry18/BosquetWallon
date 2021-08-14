@@ -37,10 +37,10 @@ public class Artiste extends Personne{
 	}
 	
 	public void getAllSpectacle() {
-		this.setSpectacles(artisteDAO.findS(this.Id));
+		Spectacle s = new Spectacle();
+		this.setSpectacles(s.find(this.Id));
 		
 	}
-
 
 
 	public List<Spectacle> getSpectacles() {

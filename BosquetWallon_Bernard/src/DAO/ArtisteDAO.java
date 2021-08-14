@@ -53,23 +53,23 @@ public class ArtisteDAO extends DAO<Artiste>{
 		
 		return null;
 	}
-	public List<Spectacle> findS(int i){
-		List<Spectacle> ls = new ArrayList<Spectacle>();
-	
-		
-		try {
-	
-			String query = "SELECT Titre, s.IdSpectacle, NbrePlaceMax from Spectacle s INNER JOIN ArtisteSpectacle a ON a.Idspectacle = s.IdSpectacle WHERE IdArtiste = " + i + ";";
-			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery(query);
-				while(result.next()) {
-					Spectacle spectacle = new Spectacle(result.getString("Titre"), result.getInt("IdSpectacle"), result.getInt("NbrePlaceMax"));
-					ls.add(spectacle);
-				}	
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return ls;
+
+	@Override
+	public List<Artiste> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Artiste> findAll(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Artiste find(Artiste t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

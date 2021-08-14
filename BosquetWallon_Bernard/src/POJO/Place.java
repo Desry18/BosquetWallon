@@ -10,6 +10,11 @@ public class Place {
 	private int numPlace;
 	private double prix;
 	private Representation representation;
+	private Commande commande;
+	public Place(Representation r, double prix2) {
+		prix = prix2;
+		representation = r;
+	}
 	public int getNumPlace() {
 		return numPlace;
 	}
@@ -28,6 +33,15 @@ public class Place {
 	public void setRepresentation(Representation representation) {
 		this.representation = representation;
 	}
+	public Commande getCommande() {
+		return commande;
+	}
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
 	
+	public boolean creer() {
+		return placeDAO.create(this);
+	}
 	
 }

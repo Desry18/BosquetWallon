@@ -68,6 +68,24 @@ public class Spectacle {
 		return titre + " || " + nbrPlaceParClient + " places dispo";
 	}
 
+	public List<Spectacle> getAll() {
+		return spectacleDAO.getAll();
+	}
+	
+	public List<Representation> afficherRepresentation (){
+		Representation r = new Representation();
+		 return r.find(this.IdSpectacle);
+	}
+
+	public List<Spectacle> find(int id) {
+		return spectacleDAO.findAll(id);
+	}
+	
+	public List<Configuration> afficherConfig(){
+		Configuration c = new Configuration();
+		return c.findAll(this.IdSpectacle);
+	}
+
 
 
 }

@@ -116,8 +116,21 @@ public class PersonneDAO extends DAO<Personne>{
 		return personne;
 	}
 
+
 	@Override
-	public List<Spectacle> findS(int id) {
+	public List<Personne> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Personne> findAll(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Personne find(Personne t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

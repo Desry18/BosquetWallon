@@ -14,6 +14,14 @@ public class Configuration {
 	private String description;
 	private List<Categorie> categorie;
 	private int Id;
+	public Configuration(String Type, String Description, int id) {
+		type = Type;
+		description = Description;
+		Id = id;
+	}
+	public Configuration() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getType() {
 		return type;
 	}
@@ -38,6 +46,21 @@ public class Configuration {
 	public void setId(int id) {
 		Id = id;
 	}
+	public List<Configuration> findAll(int idSpectacle) {
+		return configurationDAO.findAll(idSpectacle);
+	}
+	@Override
+	public String toString() {
+		return "Configuration [type=" + type + ", description=" + description + ", categorie=" + categorie + ", Id="
+				+ Id + "]";
+	}
+	
+	public List<Categorie> afficherCat(){
+		Categorie c = new Categorie();
+		return c.findAll(this.Id);
+	}
+	
+	
 	
 	
 }

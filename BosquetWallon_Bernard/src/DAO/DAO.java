@@ -22,9 +22,13 @@ public abstract class DAO<T> {
 	public abstract T find(int Id);
 	
 	public abstract T find (String nom);
+	
+	public abstract T find (T t);
 
 	public abstract List<T> getAll(int i);
 
-	public abstract List<Spectacle> findS(int id);
+	public abstract List<T> findAll(int id);
+
+	public abstract List<T> getAll();
 
 }

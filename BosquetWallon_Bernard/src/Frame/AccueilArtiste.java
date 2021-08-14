@@ -23,12 +23,16 @@ import java.util.List;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AccueilArtiste extends JFrame {
 
 	private JPanel contentPane;
-	private List<Spectacle> spectacles;
 	
+	private List<Spectacle> spectacles;
 	JList<Spectacle> list = new JList<>();
 	DefaultListModel<Spectacle> model= new DefaultListModel<>();
 	JLabel label = new JLabel();
@@ -74,12 +78,13 @@ public class AccueilArtiste extends JFrame {
 		
 		
 		list.setModel(model);
-		panel.add(label);
+		//panel.add(label);
 		spectacles = p.getSpectacles();
 		for(int i = 0; i < spectacles.size(); i++){
 			model.addElement(spectacles.get(i));
 		}
-		list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		
+		/*list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -87,9 +92,22 @@ public class AccueilArtiste extends JFrame {
 				lblNewLabel_1.setText("Ici je fous les données de représentation pour " + s.getIdSpectacle());
 			}
 		});
-		
-		list.setBounds(10, 69, 313, 169);
+		*/
+		list.setBounds(10, 69, 208, 169);
 		contentPane.add(list);
+		
+		JButton btn_rep = new JButton("Afficher les représentations");
+		btn_rep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Spectacle s = list.getSelectedValue();
+				lblNewLabel_1.setText(s.getIdSpectacle() +"");
+				RepresentationArtiste frame = new RepresentationArtiste(s);
+				frame.setVisible(true);
+			}
+		});
+		btn_rep.setToolTipText("");
+		btn_rep.setBounds(240, 66, 184, 58);
+		contentPane.add(btn_rep);
 		
 		
 	}

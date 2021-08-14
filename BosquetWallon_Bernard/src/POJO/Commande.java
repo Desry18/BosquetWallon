@@ -14,8 +14,34 @@ public class Commande {
 	private String modeLivraison;
 	private double cout;
 	private List<Place> places;
+	private Client c;
+	private int IdCommande;
 	
 	
+	
+	public Commande(double somme, String payement, String livraison, Client p) {
+		cout = somme;
+		modePayement = payement;
+		modeLivraison = livraison;
+		c = p;
+		
+	}
+	public Commande() {
+		// TODO Auto-generated constructor stub
+	}
+	public Commande(int id, String Payement, String Livraison, double somme) {
+		IdCommande = id;
+		modePayement = Payement;
+		modeLivraison = Livraison;
+		cout = somme;
+	}
+	
+	public Client getC() {
+		return c;
+	}
+	public void setC(Client c) {
+		this.c = c;
+	}
 	public String getModePayement() {
 		return modePayement;
 	}
@@ -46,6 +72,21 @@ public class Commande {
 	public String toString() {
 		return "Commande [modePayement=" + modePayement + ", modeLivraison=" + modeLivraison + ", cout=" + cout
 				+ ", places=" + places + "]";
+	}
+	
+	public boolean creer() {
+		return commandeDAO.create(this);
+		
+	}
+	public int getIdCommande() {
+		return IdCommande;
+	}
+	public void setIdCommande(int idCommande) {
+		IdCommande = idCommande;
+	}
+	
+	public Commande find() {
+		return commandeDAO.find(this);
 	}
 	
 }
