@@ -18,8 +18,19 @@ public class RepresentationDAO extends DAO<Representation>{
 
 	@Override
 	public boolean create(Representation obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String insertion = "INSERT INTO Representation (HeureDebut, HeureFin, Date, IdSpectacle, HeureOuverture) "
+					+ "values ('" + obj.getHeureDebut() + "','" + obj.getHeureFin() + "','" + obj.getDate() +"','" + obj.getSpectacle().getIdSpectacle() + "','" + obj.getHeureOuverture() + "');";
+			System.out.println(insertion);
+			
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
+			return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 	@Override

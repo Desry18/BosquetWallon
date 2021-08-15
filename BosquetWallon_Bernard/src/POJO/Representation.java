@@ -29,6 +29,14 @@ public class Representation {
 	public Representation() {
 		// TODO Auto-generated constructor stub
 	}
+	public Representation(java.sql.Date d, Spectacle s, Timestamp Debut, Timestamp Fin,
+			Timestamp Ouverture) {
+		date = d; 
+		heureDebut = Debut;
+		heureFin = Fin;
+		heureOuverture = Ouverture;	
+		spectacle = s;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -71,6 +79,33 @@ public class Representation {
 	@Override
 	public String toString() {
 		return date + " || " + heureDebut + " || " + heureFin + " || " + heureOuverture;
+	}
+	public boolean verifierHeure(PlanningSalle ps) {
+		{
+			
+			if(this.heureOuverture.before(this.heureDebut))
+			{
+				if(this.heureDebut.before(this.heureFin))
+				{
+					if(this.heureOuverture.after(ps.getDateDebutReservation()))
+					{
+						if(this.heureFin.before(ps.getDateFinReservation()))
+							return true;
+						else
+							return false;
+					}
+					else
+						return false;
+				}
+				else
+					return false;
+			}
+			else
+				return false;
+		}
+	}
+	public boolean creer() {
+		return representationDAO.create(this);
 	}
 	
 	

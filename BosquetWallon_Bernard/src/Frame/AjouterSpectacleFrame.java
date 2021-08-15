@@ -169,6 +169,7 @@ public class AjouterSpectacleFrame extends JFrame {
         spectacles = r.afficherSpectacle();
         if(spectacles != null) {
         	for (Spectacle s : spectacles) {
+        		s.setPlanningSalle(r.getPlanningSalle());
         		model.addElement(s);
         	}
         }
@@ -317,9 +318,26 @@ public class AjouterSpectacleFrame extends JFrame {
         lblNewLabel_1.setBounds(10, 540, 104, 14);
         contentPane.add(lblNewLabel_1);
         
+        JButton btn_repres = new JButton("Ajouter representation");
+        btn_repres.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Spectacle spec = list.getSelectedValue();
+        		if(spec != null) {
+					JOptionPane.showMessageDialog(null, spec.getPlanningSalle().toString());	
+
+        			AjouterRepresentationFrame frame = new AjouterRepresentationFrame(spec);
+        			frame.setVisible(true);
+        		}
+        		else {
+					JOptionPane.showMessageDialog(null, "Sélectionnez un spectacle");		
+        		}
+        		
+        	}
+        });
+        btn_repres.setBounds(704, 8, 158, 23);
+        contentPane.add(btn_repres);
+        
         
         
 	}
-        
-	
 }
