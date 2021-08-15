@@ -113,8 +113,7 @@ public class Reservation {
 	
 	@Override
 	public String toString() {
-		return "Reservation [accompte=" + accompte + ", solde=" + solde + ", statut=" + statut + ", prix=" + prix
-				+ ", planningSalle=" + planningSalle + ", o=" + o + "]";
+		return "Accompte : " + accompte + " | |  solde : " + solde + " | | statut :" + statut + " | | prix : " + prix;
 	}
 	public void confResa() {
 		if (this.solde > 0 ) {

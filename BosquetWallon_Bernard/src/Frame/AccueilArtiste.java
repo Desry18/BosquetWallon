@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import POJO.Artiste;
+import POJO.Representation;
 import POJO.Spectacle;
 
 import javax.swing.JLabel;
@@ -27,6 +28,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class AccueilArtiste extends JFrame {
 
@@ -35,6 +37,10 @@ public class AccueilArtiste extends JFrame {
 	private List<Spectacle> spectacles;
 	JList<Spectacle> list = new JList<>();
 	DefaultListModel<Spectacle> model= new DefaultListModel<>();
+	private List<Representation> representations;
+	JList<Representation> list2 = new JList<>();
+	DefaultListModel<Representation> model2= new DefaultListModel<>();
+	
 	JLabel label = new JLabel();
 	JPanel panel = new JPanel();
 	JSplitPane splitPane = new JSplitPane();
@@ -60,7 +66,7 @@ public class AccueilArtiste extends JFrame {
 	 */
 	public AccueilArtiste(Artiste p) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,43 +77,59 @@ public class AccueilArtiste extends JFrame {
 		lblNewLabel.setBounds(10, 11, 202, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(p.getSpectacles().get(0).getTitre());
-		lblNewLabel_1.setBounds(10, 36, 340, 22);
-		contentPane.add(lblNewLabel_1);
+		
+		list.setBackground(Color.ORANGE);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		
 		list.setModel(model);
-		//panel.add(label);
+		list2.setBackground(Color.ORANGE);
+		list2.setModel(model2);
 		spectacles = p.getSpectacles();
 		for(int i = 0; i < spectacles.size(); i++){
 			model.addElement(spectacles.get(i));
 		}
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 69, 217, 130);
+        contentPane.add(scrollPane);
+        scrollPane.setViewportView(list);
+        
+        JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setBounds(237, 69, 217, 130);
+        contentPane.add(scrollPane2);
+        scrollPane2.setViewportView(list2);
+
 		
-		/*list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		
+		list.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				Spectacle s = list.getSelectedValue();
-				lblNewLabel_1.setText("Ici je fous les données de représentation pour " + s.getIdSpectacle());
+				representations = s.afficherRepresentation();
+				for (Representation r : representations) {
+					model2.addElement(r);
+				}
 			}
 		});
-		*/
-		list.setBounds(10, 69, 208, 169);
-		contentPane.add(list);
 		
-		JButton btn_rep = new JButton("Afficher les représentations");
-		btn_rep.addActionListener(new ActionListener() {
+		
+		
+		
+	
+		
+		JButton btnNewButton = new JButton("Deconnexion");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Spectacle s = list.getSelectedValue();
-				lblNewLabel_1.setText(s.getIdSpectacle() +"");
-				RepresentationArtiste frame = new RepresentationArtiste(s);
-				frame.setVisible(true);
+				ConnexionFrame frame = new ConnexionFrame();
+        		dispose();
+        		frame.setVisible(true);
 			}
+			
 		});
-		btn_rep.setToolTipText("");
-		btn_rep.setBounds(240, 66, 184, 58);
-		contentPane.add(btn_rep);
+		btnNewButton.setBounds(279, 227, 145, 23);
+		contentPane.add(btnNewButton);
+		
 		
 		
 	}

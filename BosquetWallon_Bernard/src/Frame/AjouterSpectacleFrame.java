@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import POJO.Categorie;
@@ -78,9 +79,15 @@ public class AjouterSpectacleFrame extends JFrame {
 		
 		JList<Spectacle> list = new JList<Spectacle>();
 		list.setBackground(Color.ORANGE);
-        list.setBounds(10, 11, 665, 404);
-        contentPane.add(list);
+        //list.setBounds(10, 11, 665, 404);
+        //contentPane.add(list);
         list.setModel(model);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 11, 665, 404);
+        contentPane.add(scrollPane);
+        list.setModel(model);
+        scrollPane.setViewportView(list);
+
         
         tf_titre = new JTextField();
         tf_titre.setBounds(10, 451, 129, 20);
@@ -311,7 +318,7 @@ public class AjouterSpectacleFrame extends JFrame {
         		
         	}
         });
-        btnNewButton.setBounds(704, 580, 158, 23);
+        btnNewButton.setBounds(10, 596, 158, 23);
         contentPane.add(btnNewButton);
         
         JLabel lblNewLabel_1 = new JLabel("Places par client :");
@@ -336,6 +343,15 @@ public class AjouterSpectacleFrame extends JFrame {
         });
         btn_repres.setBounds(704, 8, 158, 23);
         contentPane.add(btn_repres);
+        
+        JButton btnNewButton_1 = new JButton("Accueil");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        	}
+        });
+        btnNewButton_1.setBounds(773, 596, 89, 23);
+        contentPane.add(btnNewButton_1);
         
         
         

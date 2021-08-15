@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
@@ -37,6 +38,7 @@ public class AjouterRepresentationFrame extends JFrame {
 	private JTextField tf_finM;
 	private JTextField tf_ouvH;
 	private JTextField tf_ouvM;
+	private JButton btnNewButton_1;
 	
 	/**
 	 * Launch the application.
@@ -59,7 +61,7 @@ public class AjouterRepresentationFrame extends JFrame {
 	 */
 	public AjouterRepresentationFrame(Spectacle s) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 987, 720);
+		setBounds(100, 100, 964, 515);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -67,9 +69,14 @@ public class AjouterRepresentationFrame extends JFrame {
 		
 		JList<Representation> list = new JList<Representation>();
 		list.setBackground(Color.ORANGE);
-		list.setBounds(10, 11, 933, 251);
+		//list.setBounds(10, 11, 933, 251);
 		list.setModel(model2);
-		contentPane.add(list);
+		//contentPane.add(list);
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 11, 933, 251);
+        contentPane.add(scrollPane);
+        list.setModel(model2);
+        scrollPane.setViewportView(list);
 		
 		JLabel lblNewLabel = new JLabel("Date representation : ");
 		lblNewLabel.setBounds(10, 337, 137, 14);
@@ -181,5 +188,15 @@ public class AjouterRepresentationFrame extends JFrame {
 		});
 		btnNewButton.setBounds(10, 437, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+			
+		});
+		btnNewButton_1.setBounds(849, 437, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }

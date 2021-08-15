@@ -130,7 +130,7 @@ public class ConnexionFrame extends JFrame {
 						JOptionPane.showMessageDialog(null, "Mot de passe incorrect");
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "L'adresse Email n'existe pas, veuillez cr�er un compte");
+					JOptionPane.showMessageDialog(null, "L'adresse Email n'existe pas, veuillez créer un compte");
 				}
 			}
 

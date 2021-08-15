@@ -119,6 +119,17 @@ public class CommandeFrame extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("Mode de livraison");
 		lblNewLabel_3.setBounds(321, 11, 148, 14);
 		contentPane.add(lblNewLabel_3);
+		
+		JButton btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(380, 227, 89, 23);
+		contentPane.add(btnNewButton_1);
+	
+		
 	}
 
 }

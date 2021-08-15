@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -78,13 +79,23 @@ public class ConfigurationFrame extends JFrame {
 		
 		JList<Configuration> list = new JList<Configuration>();
 		list.setBackground(Color.ORANGE);
-		list.setBounds(10, 111, 534, 238);
-		contentPane.add(list);
+		//list.setBounds(10, 111, 534, 238);
+		//contentPane.add(list);
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 111, 534, 238);
+        contentPane.add(scrollPane);
+        //list.setModel(model2);
+        scrollPane.setViewportView(list);
 		
 		JList<Categorie> list_1 = new JList<Categorie>();
 		list_1.setBackground(Color.ORANGE);
-		list_1.setBounds(554, 111, 592, 238);
-		contentPane.add(list_1);
+		//list_1.setBounds(554, 111, 592, 238);
+		//contentPane.add(list_1);
+		JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setBounds(554, 111, 592, 238);
+        contentPane.add(scrollPane2);
+        //list.setModel(model2);
+        scrollPane2.setViewportView(list_1);
 		
 		list.setModel(model);
 		list_1.setModel(model2);
@@ -159,6 +170,14 @@ public class ConfigurationFrame extends JFrame {
 		btnNewButton.setBounds(10, 394, 124, 23);
 		contentPane.add(btnNewButton);
 		
+		JButton btn_accueil = new JButton("Accueil");
+		btn_accueil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btn_accueil.setBounds(1057, 394, 89, 23);
+		contentPane.add(btn_accueil);
+		
 	}
-
 }

@@ -62,7 +62,7 @@ public class AccueilClient extends JFrame {
 		setTitle("Client");
 		setBackground(Color.PINK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 903, 453);
+		setBounds(100, 100, 909, 486);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,13 +75,19 @@ public class AccueilClient extends JFrame {
 		JList<Spectacle> list = new JList<Spectacle>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBackground(Color.ORANGE);
-		list.setBounds(10, 111, 340, 238);
-		contentPane.add(list);
+		
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 111, 340, 238);
+        contentPane.add(scrollPane);
+        scrollPane.setViewportView(list);
 		
 		JList<Representation> list_1 = new JList<Representation>();
 		list_1.setBackground(Color.ORANGE);
-		list_1.setBounds(367, 111, 510, 238);
-		contentPane.add(list_1);
+		
+		JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setBounds(367, 111, 510, 238);
+        contentPane.add(scrollPane2);
+        scrollPane2.setViewportView(list_1);
 		
 		list.setModel(model);
 		spectacles = p.getSpectacle();
@@ -145,8 +151,19 @@ public class AccueilClient extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnNewButton = new JButton("Continuer");
-		btnNewButton.setBounds(788, 360, 89, 23);
+		btnNewButton.setBounds(726, 360, 151, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Deconnexion");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConnexionFrame frame = new ConnexionFrame();
+        		dispose();
+        		frame.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(726, 394, 151, 23);
+		contentPane.add(btnNewButton_1);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Spectacle s = list.getSelectedValue();

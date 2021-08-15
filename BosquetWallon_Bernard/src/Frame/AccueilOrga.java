@@ -2,6 +2,7 @@ package Frame;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -66,14 +67,16 @@ public class AccueilOrga extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(714, 541, 182, 23);
+		btnNewButton.setBounds(260, 541, 182, 23);
 		contentPane.add(btnNewButton);
 		
 		JList<Reservation> list = new JList<Reservation>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setBackground(Color.ORANGE);
-        list.setBounds(10, 111, 720, 407);
-        contentPane.add(list);
+        //list.setBounds(10, 111, 720, 407);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 111, 720, 407);
+        contentPane.add(scrollPane);
         list.setModel(model);
        
         reservations = p.afficherReservations();
@@ -96,6 +99,24 @@ public class AccueilOrga extends JFrame {
         });
         btn_spec.setBounds(740, 111, 156, 23);
         contentPane.add(btn_spec);
+        
+        JLabel lblNewLabel_1 = new JLabel("Ajouter une reservation : ");
+        lblNewLabel_1.setBounds(10, 545, 240, 14);
+        contentPane.add(lblNewLabel_1);
+        
+        JButton btnNewButton_1 = new JButton("Deconnexion");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ConnexionFrame frame = new ConnexionFrame();
+        		dispose();
+        		frame.setVisible(true);
+        	}
+        });
+        btnNewButton_1.setBounds(754, 541, 142, 23);
+        contentPane.add(btnNewButton_1);
+        
+        scrollPane.setViewportView(list);
+
 		
 	}
 }
