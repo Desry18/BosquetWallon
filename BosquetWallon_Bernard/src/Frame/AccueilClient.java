@@ -18,6 +18,7 @@ import POJO.Spectacle;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
@@ -171,6 +172,10 @@ public class AccueilClient extends JFrame {
 				if(r != null && s != null) {
 					ConfigurationFrame frame = new ConfigurationFrame(r,s, p);
 					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sélectionnez un spectacle et une représentation");			
+
 				}
 			}
 		});

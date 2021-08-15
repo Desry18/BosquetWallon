@@ -74,8 +74,8 @@ public class Commande {
 				+ ", places=" + places + "]";
 	}
 	
-	public boolean creer() {
-		return commandeDAO.create(this);
+	public boolean creer(Commande c2) {
+		return commandeDAO.create(c2);
 		
 	}
 	public int getIdCommande() {

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -89,12 +90,9 @@ public class ConfigurationFrame extends JFrame {
 		
 		JList<Categorie> list_1 = new JList<Categorie>();
 		list_1.setBackground(Color.ORANGE);
-		//list_1.setBounds(554, 111, 592, 238);
-		//contentPane.add(list_1);
 		JScrollPane scrollPane2 = new JScrollPane();
         scrollPane2.setBounds(554, 111, 592, 238);
         contentPane.add(scrollPane2);
-        //list.setModel(model2);
         scrollPane2.setViewportView(list_1);
 		
 		list.setModel(model);
@@ -151,6 +149,11 @@ public class ConfigurationFrame extends JFrame {
 					places.add(p);
 					cpt++;
 					lbl_cpt.setText(cpt + "");
+					c.setNbrPlaceDispo(c.getNbrPlaceDispo()-1);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Sélectionnez une configuration et une catégorie");			
+
 				}
 			}
 		});
@@ -161,8 +164,12 @@ public class ConfigurationFrame extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(places != null) {
-					CommandeFrame frame = new CommandeFrame(r, places, p);
+					CommandeFrame frame = new CommandeFrame(r, places, p, categories);
 					frame.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Ajoutez au moins une place");			
+
 				}
 			}
 			

@@ -69,18 +69,10 @@ public class Categorie {
 	}
 	@Override
 	public String toString() {
-		return "Categorie [type=" + type + ", prix=" + prix + ", nbrPlaceDispo=" + nbrPlaceDispo + ", nbrPlaceMax="
-				+ nbrPlaceMax + "]";
+		return "type=" + type + ", prix=" + prix + ", nbrPlaceDispo=" + nbrPlaceDispo + ", nbrPlaceMax="
+				+ nbrPlaceMax ;
 	}
-	/*public void ajouterCategorie(Configuration configuration)
-	{
-		categorieDAO.create(this);
-		((CategorieDAO)categorieDAO).ajouterConfiguration(configuration.getId());
-	}
-	public void diminuerNombreDePlace()
-	{
-		categorieDAO.update(this);
-	}*/
+	
 	public List<Categorie> findAll(int id) {
 		return categorieDAO.findAll(id);
 	}
@@ -92,6 +84,9 @@ public class Categorie {
 	}
 	public boolean creer() {
 		return categorieDAO.create(this);
+	}
+	public boolean update() {
+		return categorieDAO.update(this);
 	}
 	
 }

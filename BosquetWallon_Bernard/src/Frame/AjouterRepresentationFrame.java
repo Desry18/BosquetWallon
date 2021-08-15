@@ -141,49 +141,56 @@ public class AjouterRepresentationFrame extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				Date d = new java.sql.Date(DateRepresentation.getDate().getTime());
-				int heure1 = Integer.parseInt(tf_debutH.getText());
-				int minute1 = Integer.parseInt(tf_debutM.getText());
-				Timestamp heureDebut = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure1,minute1).getTime());
-				
+				if(DateRepresentation.getDate() == null || tf_debutH.getText().isEmpty() || tf_debutM.getText().isEmpty() || tf_finH.getText().isEmpty() || tf_finM.getText().isEmpty() || tf_ouvH.getText().isEmpty() || tf_ouvM.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs");
 
-				int heure2 = Integer.parseInt(tf_finH.getText());
-				int minute2 = Integer.parseInt(tf_finM.getText());
-				Timestamp heureFin = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure2,minute2).getTime());
-				
+				}
 
-				int heure3 = Integer.parseInt(tf_ouvH.getText());
-				int minute3 = Integer.parseInt(tf_ouvM.getText());
-				Timestamp heureOuverture = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure3,minute3).getTime());
-				if((0<=heure1&&heure1<=23)&&(0<=heure2&&heure2<=23)&&(0<=heure3&&heure3<=23)&&(0<=minute1&&minute1<=59)&&(0<=minute2&&minute2<=59)&&(0<=minute3&&minute3<=59))
-				{
-					Representation r = new Representation((java.sql.Date)d, s, heureDebut, heureFin, heureOuverture);
-					if(r.verifierHeure(s.getPlanningSalle()))
+				else {
+					Date d = new java.sql.Date(DateRepresentation.getDate().getTime());
+					int heure1 = Integer.parseInt(tf_debutH.getText());
+					int minute1 = Integer.parseInt(tf_debutM.getText());
+					Timestamp heureDebut = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure1,minute1).getTime());
+					
+	
+					int heure2 = Integer.parseInt(tf_finH.getText());
+					int minute2 = Integer.parseInt(tf_finM.getText());
+					Timestamp heureFin = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure2,minute2).getTime());
+					
+	
+					int heure3 = Integer.parseInt(tf_ouvH.getText());
+					int minute3 = Integer.parseInt(tf_ouvM.getText());
+					Timestamp heureOuverture = new Timestamp(new java.util.Date(d.getYear(),d.getMonth(),d.getDate(),heure3,minute3).getTime());
+					if((0<=heure1&&heure1<=23)&&(0<=heure2&&heure2<=23)&&(0<=heure3&&heure3<=23)&&(0<=minute1&&minute1<=59)&&(0<=minute2&&minute2<=59)&&(0<=minute3&&minute3<=59))
 					{
-						r.creer();
+						Representation r = new Representation((java.sql.Date)d, s, heureDebut, heureFin, heureOuverture);
+						if(r.verifierHeure(s.getPlanningSalle()))
+						{
+							r.creer();
+							model2.addElement(r);
+							tf_debutH.setText(null);
+							tf_finH.setText(null);
+							tf_ouvH.setText(null);
+							tf_debutM.setText(null);
+							tf_finM.setText(null);
+							tf_ouvM.setText(null);
+							JOptionPane.showMessageDialog(null, "Ajout avec succès");
+						}
+						else
+							JOptionPane.showMessageDialog(null, "Les heures choisies sont en dehors de la réservation de la salle");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Veuillez ins�rer une heure correcte");
 						tf_debutH.setText(null);
 						tf_finH.setText(null);
 						tf_ouvH.setText(null);
 						tf_debutM.setText(null);
 						tf_finM.setText(null);
 						tf_ouvM.setText(null);
-						JOptionPane.showMessageDialog(null, "Ajout avec succès");
 					}
-					else
-						JOptionPane.showMessageDialog(null, "Les heures choisies sont en dehors de la r�servation de la salle");
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "Veuillez ins�rer une heure correcte");
-					tf_debutH.setText(null);
-					tf_finH.setText(null);
-					tf_ouvH.setText(null);
-					tf_debutM.setText(null);
-					tf_finM.setText(null);
-					tf_ouvM.setText(null);
-				}
 			}
-				
+		}	
 			
 		});
 		btnNewButton.setBounds(10, 437, 89, 23);
@@ -198,5 +205,16 @@ public class AjouterRepresentationFrame extends JFrame {
 		});
 		btnNewButton_1.setBounds(849, 437, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4.setBounds(10, 273, 435, 14);
+		contentPane.add(lblNewLabel_4);
+		lblNewLabel_4.setText("Date début réservation : " + s.getPlanningSalle().getDateDebutReservation().toString());
+		
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setBounds(10, 298, 472, 14);
+		contentPane.add(lblNewLabel_5);
+		lblNewLabel_5.setText("Date fin réservation : " + s.getPlanningSalle().getDateFinReservation().toString());
+
 	}
 }

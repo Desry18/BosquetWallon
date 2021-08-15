@@ -49,9 +49,10 @@ public class CommandeFrame extends JFrame {
 	 * Create the frame.
 	 * @param places 
 	 * @param r 
+	 * @param categories 
 	 * @param p 
 	 */
-	public CommandeFrame(Representation r, List<Place> places, Client p1) {
+	public CommandeFrame(Representation r, List<Place> places, Client p1, List<Categorie> categories) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 506, 300);
 		contentPane = new JPanel();
@@ -59,10 +60,7 @@ public class CommandeFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(20, 80, 436, 14);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setText(places.get(0).toString());
+		
 		
 		JLabel Somme = new JLabel("");
 		Somme.setBounds(20, 35, 39, 14);
@@ -96,12 +94,14 @@ public class CommandeFrame extends JFrame {
 					Somme.setText(somme + "");	
 				}
 				c = new Commande(somme, comboBox.getSelectedItem().toString(), comboBox2.getSelectedItem().toString(), p1);
-				lblNewLabel.setText(c.toString());
-				c.creer();
+				p1.creerCommande(c);
 				c = c.find();
 				for (Place place : places) {
 					place.setCommande(c);
-					place.creer();
+					p1.creerPlaces(place);
+				}
+				for (Categorie c : categories) {
+					c.update();
 				}
 			}
 		});
@@ -109,7 +109,7 @@ public class CommandeFrame extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Somme : ");
-		lblNewLabel_1.setBounds(10, 11, 46, 14);
+		lblNewLabel_1.setBounds(10, 11, 89, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Mode de payement");

@@ -38,5 +38,26 @@ public class Organisateur extends Personne{
 		return r.findAll(this);
 		
 	}
+
+	public boolean creerPlanning(PlanningSalle planning) {
+		return planning.creer();
+	}
+
+	public boolean creerReservation(Reservation r) {
+		return r.creer();
+		
+	}
+
+	public boolean creerSpectacle(Spectacle s) {
+		return s.creer();
+	}
+
+	public boolean creerConfig(Configuration co) {
+		return co.creer();
+	}
+
+	public boolean creerCategorie(Categorie cate) {
+		return cate.creer();
+	}
 	
 }

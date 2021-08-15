@@ -13,6 +13,7 @@ import POJO.Reservation;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -65,6 +66,7 @@ public class AccueilOrga extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				PlanningFrame frame = new PlanningFrame(p);
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(260, 541, 182, 23);
@@ -94,6 +96,10 @@ public class AccueilOrga extends JFrame {
         		if (r != null) {
         			AjouterSpectacleFrame frame = new AjouterSpectacleFrame(r, p);
         			frame.setVisible(true);
+        		}
+        		else {
+					JOptionPane.showMessageDialog(null, "Veuillez sélectionner une réservation en cliquant dessus");			
+
         		}
         	}
         });

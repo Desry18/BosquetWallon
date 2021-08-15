@@ -37,6 +37,15 @@ public class Client extends Personne{
 	public void setCommandes(List<Commande> commandes) {
 		this.commandes = commandes;
 	}
+
+	public boolean creerCommande(Commande c) {
+		return c.creer(c);
+		
+	}
+
+	public boolean creerPlaces(Place place) {
+		return place.creer();
+	}
 	
 	
 }

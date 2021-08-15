@@ -64,8 +64,8 @@ public class Configuration {
 	}
 	@Override
 	public String toString() {
-		return "Configuration [type=" + type + ", description=" + description + ", categorie=" + categorie + ", Id="
-				+ Id + "]";
+		return "type=" + type + ", description=" + description + ", categorie=" + categorie + ", Id="
+				+ Id ;
 	}
 	
 	public List<Categorie> afficherCat(){

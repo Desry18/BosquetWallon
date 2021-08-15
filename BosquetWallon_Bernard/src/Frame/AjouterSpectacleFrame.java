@@ -83,7 +83,7 @@ public class AjouterSpectacleFrame extends JFrame {
         //contentPane.add(list);
         list.setModel(model);
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 11, 665, 404);
+        scrollPane.setBounds(10, 11, 628, 404);
         contentPane.add(scrollPane);
         list.setModel(model);
         scrollPane.setViewportView(list);
@@ -238,79 +238,90 @@ public class AjouterSpectacleFrame extends JFrame {
         JButton btnNewButton = new JButton("Ajouter Spectacle");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		titre = tf_titre.getText();
-    			places =Integer.parseInt(tf_places.getText());
+        		
 
         		switch (comboBox.getSelectedItem().toString()) {
         		case "Debout" : 
         			type = "Debout";
         			desc = "Travaillez vos jambes !";
-        			if(titre != null && tf_places.getText() != null && tf_libre.getText()!=null) {
+        			if(tf_titre.getText().isEmpty() || tf_places.getText().isEmpty() || tf_libre.getText().isEmpty()) {
+        				JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs ");
+        				
+        			}       				
+        			    			
+        			else {
+        				titre = tf_titre.getText();
+            			places = Integer.parseInt(tf_places.getText());
         				Spectacle s = new Spectacle(r.getPlanningSalle(), titre, places);
-        				s.creer();
+        				p.creerSpectacle(s);
         				s = s.find();
         				Configuration co = new Configuration(type, desc, s);
-        				co.creer();
+        				p.creerConfig(co);
         				co = co.find();
         				prix = Double.parseDouble(tf_libre.getText());
         				Categorie cate = new Categorie("Libre", prix, 8000, 8000, co);
-        				cate.creer();
+        				p.creerCategorie(cate);
         				model.addElement(s);
 
-        			}    			
-        			
-        			else {
-    					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs " + titre + " " + tf_places.getText() + " " + tf_libre.getText());		
+    							
         			}
         			break;
         			
         		case "Concert" : 
         			type = "Concert";
         			desc = "Assis comme pour un concert";
-        			if(titre != null && tf_places.getText() != null && tf_bronze.getText()!=null && tf_argent.getText() != null && tf_or.getText() != null) {
-        				Spectacle s = new Spectacle(r.getPlanningSalle(), titre, places);
-        				s.creer();
-        				s = s.find();
-        				Configuration co = new Configuration(type, desc, s);
-        				co.creer();
-        				co = co.find();
-        				Categorie cate = new Categorie("Or", Double.parseDouble(tf_or.getText()), 500, 500, co);
-        				cate.creer();
-        				Categorie cate2 = new Categorie("Argent", Double.parseDouble(tf_argent.getText()), 1500, 1500, co);
-        				cate2.creer();
-        				Categorie cate3 = new Categorie("Bronze", Double.parseDouble(tf_bronze.getText()), 3000, 3000, co);
-        				cate3.creer();
-        				model.addElement(s);
+        			if(tf_titre.getText().isEmpty() || tf_places.getText().isEmpty() || tf_bronze.getText().isEmpty() || tf_argent.getText().isEmpty()  || tf_or.getText().isEmpty()) {
+    					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs " + titre + " " + tf_places.getText() + " " + tf_libre.getText());		
+
+        				
         			}
         			else {
-    					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs " + titre + " " + tf_places.getText() + " " + tf_libre.getText());		
+        				titre = tf_titre.getText();
+            			places = Integer.parseInt(tf_places.getText());
+        				Spectacle s = new Spectacle(r.getPlanningSalle(), titre, places);
+        				p.creerSpectacle(s);
+        				s = s.find();
+        				Configuration co = new Configuration(type, desc, s);
+        				p.creerConfig(co);
+        				co = co.find();
+        				Categorie cate = new Categorie("Or", Double.parseDouble(tf_or.getText()), 500, 500, co);
+        				p.creerCategorie(cate);
+        				Categorie cate2 = new Categorie("Argent", Double.parseDouble(tf_argent.getText()), 1500, 1500, co);
+        				p.creerCategorie(cate2);
+        				Categorie cate3 = new Categorie("Bronze", Double.parseDouble(tf_bronze.getText()), 3000, 3000, co);
+        				p.creerCategorie(cate3);
+        				model.addElement(s);
         			}
         			break;
         			
         		case "Cirque" : 
         			type = "Cirque";
         			desc = "Assis comme dans un cirque";
-        			if(titre != null && tf_places.getText() != null && tf_bronze.getText()!=null && tf_argent.getText() != null && tf_or.getText() != null && tf_diams.getText() != null) {
-        				Spectacle s = new Spectacle(r.getPlanningSalle(), titre, places);
-        				s.creer();
-        				s = s.find();
-        				Configuration co = new Configuration(type, desc, s);
-        				co.creer();
-        				co = co.find();
-        				Categorie cate = new Categorie("Or", Double.parseDouble(tf_or.getText()), 2000, 2000, co);
-        				cate.creer();
-        				Categorie cate2 = new Categorie("Argent", Double.parseDouble(tf_argent.getText()), 1500, 1500, co);
-        				cate2.creer();
-        				Categorie cate3 = new Categorie("Bronze", Double.parseDouble(tf_bronze.getText()), 1500, 1500, co);
-        				cate3.creer();
-        				Categorie cate4 = new Categorie("Diamant", Double.parseDouble(tf_diams.getText()), 1000, 1000, co);
-        				cate4.creer();
-        				
-        				model.addElement(s);
+        			if(tf_titre.getText().isEmpty() || tf_places.getText().isEmpty() || tf_bronze.getText().isEmpty() || tf_argent.getText().isEmpty()  || tf_or.getText().isEmpty() || tf_diams.getText().isEmpty() ) {
+    					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs " + titre + " " + tf_places.getText() + " " + tf_libre.getText());		
+
 
         			}
         			else {
-    					JOptionPane.showMessageDialog(null, "Veuillez renseigner tous les champs " + titre + " " + tf_places.getText() + " " + tf_libre.getText());		
+
+        				titre = tf_titre.getText();
+            			places = Integer.parseInt(tf_places.getText());
+        				Spectacle s = new Spectacle(r.getPlanningSalle(), titre, places);
+        				p.creerSpectacle(s);
+        				s = s.find();
+        				Configuration co = new Configuration(type, desc, s);
+        				p.creerConfig(co);
+        				co = co.find();
+        				Categorie cate = new Categorie("Or", Double.parseDouble(tf_or.getText()), 2000, 2000, co);
+        				p.creerCategorie(cate);
+        				Categorie cate2 = new Categorie("Argent", Double.parseDouble(tf_argent.getText()), 1500, 1500, co);
+        				p.creerCategorie(cate2);
+        				Categorie cate3 = new Categorie("Bronze", Double.parseDouble(tf_bronze.getText()), 1500, 1500, co);
+        				p.creerCategorie(cate3);
+        				Categorie cate4 = new Categorie("Diamant", Double.parseDouble(tf_diams.getText()), 1000, 1000, co);
+        				p.creerCategorie(cate4);
+        				
+        				model.addElement(s);
         			}
         			break;
         			
@@ -330,7 +341,6 @@ public class AjouterSpectacleFrame extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		Spectacle spec = list.getSelectedValue();
         		if(spec != null) {
-					JOptionPane.showMessageDialog(null, spec.getPlanningSalle().toString());	
 
         			AjouterRepresentationFrame frame = new AjouterRepresentationFrame(spec);
         			frame.setVisible(true);
@@ -341,7 +351,7 @@ public class AjouterSpectacleFrame extends JFrame {
         		
         	}
         });
-        btn_repres.setBounds(704, 8, 158, 23);
+        btn_repres.setBounds(668, 8, 194, 23);
         contentPane.add(btn_repres);
         
         JButton btnNewButton_1 = new JButton("Accueil");

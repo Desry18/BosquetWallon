@@ -154,6 +154,18 @@ public class PlanningFrame extends JFrame {
 		JButton btn_resa = new JButton("Confirmer Reservation");
 		btn_resa.setBounds(10, 358, 200, 23);
 		contentPane.add(btn_resa);
+		btn_resa.setVisible(false);
+		
+		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccueilOrga frame = new AccueilOrga(o);
+				dispose();
+				frame.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(460, 358, 89, 23);
+		contentPane.add(btnNewButton);
 		
 		
 		btn_date.addActionListener(new ActionListener() {
@@ -170,6 +182,7 @@ public class PlanningFrame extends JFrame {
 					lbl_prix.setText(r.getPrix() + "");
 					lblNewLabel_2.setVisible(true);
 					lbl_prix.setVisible(true);
+					btn_resa.setVisible(true);
 					// Accompte etc a afficher en true puis nouveau bouton pour créer mes objets.
 					
 				}
@@ -196,6 +209,10 @@ public class PlanningFrame extends JFrame {
 				}
 				else {
 					r.addAccompte(Integer.parseInt(tf_acc.getText()));
+					JOptionPane.showMessageDialog(null, "Accompte accepté");
+					lbl_acc.setVisible(false);
+					tf_acc.setVisible(false);
+
 					
 				}
 			}
@@ -204,11 +221,12 @@ public class PlanningFrame extends JFrame {
 		btn_resa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				r.confResa();
-				planning.creer();
+				o.creerPlanning(planning);
 				planning = planning.find();
 				r.setPlanningSalle(planning);
-				r.creer();
-				JOptionPane.showMessageDialog(null, r.toString() + " IdSalle : " + r.getPlanningSalle().getId());
+				o.creerReservation(r);
+				JOptionPane.showMessageDialog(null, "réservation créée");
+						
 
 			}
 		});
