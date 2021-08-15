@@ -71,6 +71,12 @@ public class ArtisteDAO extends DAO<Artiste>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Artiste> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

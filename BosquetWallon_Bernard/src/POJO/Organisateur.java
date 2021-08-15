@@ -33,6 +33,10 @@ public class Organisateur extends Personne{
 		
 	}
 	
-	
+	public List<Reservation> afficherReservations(){
+		Reservation r = new Reservation();
+		return r.findAll(this);
+		
+	}
 	
 }

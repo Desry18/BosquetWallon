@@ -14,6 +14,7 @@ public class Categorie {
 	private int nbrPlaceDispo;
 	private int nbrPlaceMax;
 	private int IdCategorie;
+	private Configuration config;
 	public int getIdCategorie() {
 		return IdCategorie;
 	}
@@ -59,6 +60,13 @@ public class Categorie {
 	}
 	public Categorie() {
 	}
+	public Categorie(String string, double prix2, int i, int j, Configuration co) {
+		type = string;
+		prix = prix2;
+		nbrPlaceDispo = i;
+		nbrPlaceMax = j;
+		config = co;
+	}
 	@Override
 	public String toString() {
 		return "Categorie [type=" + type + ", prix=" + prix + ", nbrPlaceDispo=" + nbrPlaceDispo + ", nbrPlaceMax="
@@ -75,6 +83,15 @@ public class Categorie {
 	}*/
 	public List<Categorie> findAll(int id) {
 		return categorieDAO.findAll(id);
+	}
+	public Configuration getConfig() {
+		return config;
+	}
+	public void setConfig(Configuration config) {
+		this.config = config;
+	}
+	public boolean creer() {
+		return categorieDAO.create(this);
 	}
 	
 }

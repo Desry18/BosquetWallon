@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Categorie;
+import POJO.Configuration;
 import POJO.Representation;
 import POJO.Spectacle;
 public class CategorieDAO  extends DAO<Categorie>{
@@ -18,22 +19,18 @@ public class CategorieDAO  extends DAO<Categorie>{
 	@Override
 	public boolean create(Categorie obj) {
 		try {
-			PreparedStatement ps = null;
-			String insertion2 = "INSERT INTO Categorie (Type,Prix,NombrePlaceDispo,NombrePlaceMax) VALUES (?,?,?,?)";
-			ps = connect.prepareStatement(insertion2);
-			connect.createStatement();
-			ps.setString(1, obj.getType());
-			ps.setDouble(2, obj.getPrix());
-			ps.setInt(3, obj.getNbrPlaceDispo());
-			ps.setInt(4, obj.getNbrPlaceMax());
-			ps.executeUpdate();
-			System.out.print(insertion2);
+			String insertion = "INSERT INTO Categorie (Type, Prix, NombrePlaceDispo, NombrePlaceMax, IdConfiguration) "
+					+ "values ('" + obj.getType()+ "','" + obj.getPrix() + "','" + obj.getNbrPlaceDispo() + "','" + obj.getNbrPlaceMax() + "','" + obj.getConfig().getId() +"');";
+			System.out.println(insertion);
+			
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 	@Override
@@ -133,6 +130,25 @@ public class CategorieDAO  extends DAO<Categorie>{
 
 	@Override
 	public Categorie find(Categorie t) {
+		Categorie s = new Categorie();
+		ResultSet result;
+		try {
+			result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Categorie WHERE Type = '" + t.getType()
+			                                                    + "' AND idConfig = '" + t.getConfig().getId()
+			                                                    +  "'");
+	        if(result.last())
+	            s = new Categorie(result.getString("Type"), result.getDouble("Prix"), result.getInt("NombrePlaceDispo"), result.getInt("NombrePlaceMax"), t.getConfig());
+	        return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+			}	
+	}
+
+	@Override
+	public List<Categorie> findAll(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

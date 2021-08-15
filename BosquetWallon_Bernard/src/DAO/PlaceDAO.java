@@ -79,4 +79,10 @@ public class PlaceDAO extends DAO<Place>{
 		return null;
 	}
 
+	@Override
+	public List<Place> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

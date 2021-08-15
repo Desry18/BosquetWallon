@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import POJO.Commande;
 import POJO.PlanningSalle;
 
 public class PlanningSalleDAO extends DAO<PlanningSalle>{
@@ -17,8 +18,19 @@ public class PlanningSalleDAO extends DAO<PlanningSalle>{
 
 	@Override
 	public boolean create(PlanningSalle obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String insertion = "INSERT INTO PlanningSalle (DateDebut, DateFin) "
+					+ "values ('" + obj.getDateDebutReservation() + "','" + obj.getDateFinReservation() + "');";
+			System.out.println(insertion);
+			
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
+			return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 	@Override
@@ -47,8 +59,21 @@ public class PlanningSalleDAO extends DAO<PlanningSalle>{
 
 	@Override
 	public PlanningSalle find(PlanningSalle t) {
-		// TODO Auto-generated method stub
-		return null;
+		PlanningSalle ps = new PlanningSalle();
+		ResultSet result;
+		try {
+			result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM PlanningSalle WHERE DateDebut = '" + t.getDateDebutReservation()
+			                                                    + "' AND DateFin = '" + t.getDateFinReservation()
+			                                                    +  "'");
+	        if(result.last())
+	            ps = new PlanningSalle(result.getInt("IdSalle"), result.getDate("DateDebut"), result.getDate("DateFin"));
+	        return ps;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -79,5 +104,11 @@ public class PlanningSalleDAO extends DAO<PlanningSalle>{
 			e.printStackTrace();
 		}
 		return PlanningSalles;	}
+
+	@Override
+	public List<PlanningSalle> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

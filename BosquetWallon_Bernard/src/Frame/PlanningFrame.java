@@ -20,12 +20,16 @@ import com.toedter.calendar.JCalendar;
 import POJO.Organisateur;
 import POJO.PlanningSalle;
 import POJO.Reservation;
+import javax.swing.JTextField;
 
 public class PlanningFrame extends JFrame {
 
 	private JPanel contentPane;
 	Date dateDebut = null;
 	Date dateFin = null;
+	private JTextField tf_acc;
+	Reservation r = new Reservation();
+	PlanningSalle planning = new PlanningSalle();
 	/**
 	 * Launch the application.
 	 */
@@ -68,10 +72,10 @@ public class PlanningFrame extends JFrame {
 		LblDateFin.setBounds(145, 202, 85, 13);
 		contentPane.add(LblDateFin);
 		
-		JButton btnNewButton = new JButton("Valider");
-		btnNewButton.setBounds(10, 268, 89, 23);
-		contentPane.add(btnNewButton);
-		btnNewButton.setVisible(false);
+		JButton btn_date = new JButton("Valider Dates");
+		btn_date.setBounds(10, 268, 125, 23);
+		contentPane.add(btn_date);
+		btn_date.setVisible(false);
 		
 		
 		JButton BtnValider = new JButton("Valider la date de d\u00E9but");
@@ -103,7 +107,7 @@ public class PlanningFrame extends JFrame {
 
 						LblDateFin.setText(dateFormat.format(dateFin));
 						BtnValider.setVisible(false);
-						btnNewButton.setVisible(true);
+						btn_date.setVisible(true);
 
 					}
 				}
@@ -122,23 +126,46 @@ public class PlanningFrame extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Prix : ");
-		lblNewLabel_2.setBounds(20, 302, 46, 14);
+		lblNewLabel_2.setBounds(10, 302, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		lblNewLabel_2.setVisible(false);
 		
 		JLabel lbl_prix = new JLabel("");
-		lbl_prix.setBounds(89, 302, 46, 14);
+		lbl_prix.setBounds(101, 302, 46, 14);
 		contentPane.add(lbl_prix);
 		lbl_prix.setVisible(false);
+
+		
+		JLabel lbl_acc = new JLabel("Accompte : ");
+		lbl_acc.setBounds(216, 302, 84, 14);
+		contentPane.add(lbl_acc);
+		
+		tf_acc = new JTextField();
+		tf_acc.setBounds(310, 299, 86, 20);
+		contentPane.add(tf_acc);
+		tf_acc.setColumns(10);
+		
+		JButton btn_acc = new JButton("Valider Accompte");
+		btn_acc.setBounds(406, 298, 143, 23);
+		contentPane.add(btn_acc);
 		
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		JButton btn_resa = new JButton("Confirmer Reservation");
+		btn_resa.setBounds(10, 358, 200, 23);
+		contentPane.add(btn_resa);
+		
+		
+		btn_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlanningSalle planning = new PlanningSalle((java.sql.Date)dateDebut,(java.sql.Date)dateFin);
+				
+				planning.setDateDebutReservation((java.sql.Date)dateDebut);
+				planning.setDateFinReservation((java.sql.Date)dateFin);
 				if(planning.verifDates()) {
 					//ReservationFrame frame = new ReservationFrame(o, planning);
 					//frame.setVisible(true);
-					Reservation r = new Reservation(planning, o);
+					r.setPlanningSalle(planning);
+					r.setO(o);
 					r.calculerPrix();
 					lbl_prix.setText(r.getPrix() + "");
 					lblNewLabel_2.setVisible(true);
@@ -151,7 +178,7 @@ public class PlanningFrame extends JFrame {
 					dateDebut = null;
 					dateFin=null;
 					BtnValider.setVisible(true);
-					btnNewButton.setVisible(false);
+					btn_date.setVisible(false);
 					LblDateDebut.setText("");
 					LblDateFin.setText("");
 					
@@ -161,6 +188,30 @@ public class PlanningFrame extends JFrame {
 				
 			}
 		});
-		;
+		btn_acc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Integer.parseInt(tf_acc.getText()) > r.getPrix()) {
+					JOptionPane.showMessageDialog(null, "L'accompte est supérieur au prix total");
+					
+				}
+				else {
+					r.addAccompte(Integer.parseInt(tf_acc.getText()));
+					
+				}
+			}
+		});
+		
+		btn_resa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				r.confResa();
+				planning.creer();
+				planning = planning.find();
+				r.setPlanningSalle(planning);
+				r.creer();
+				JOptionPane.showMessageDialog(null, r.toString() + " IdSalle : " + r.getPlanningSalle().getId());
+
+			}
+		});
+		
 	}
 }

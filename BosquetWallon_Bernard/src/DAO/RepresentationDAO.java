@@ -85,4 +85,10 @@ public class RepresentationDAO extends DAO<Representation>{
 		return null;
 	}
 
+	@Override
+	public List<Representation> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

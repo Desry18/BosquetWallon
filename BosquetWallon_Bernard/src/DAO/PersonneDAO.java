@@ -135,4 +135,10 @@ public class PersonneDAO extends DAO<Personne>{
 		return null;
 	}
 
+	@Override
+	public List<Personne> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

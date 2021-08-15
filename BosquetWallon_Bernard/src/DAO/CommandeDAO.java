@@ -97,4 +97,10 @@ public class CommandeDAO extends DAO<Commande>{
 		
 	}
 
+	@Override
+	public List<Commande> findAll(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

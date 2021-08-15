@@ -8,6 +8,7 @@ import java.util.List;
 
 import POJO.Configuration;
 import POJO.Representation;
+import POJO.Spectacle;
 
 public class ConfigurationDAO extends DAO<Configuration>{
 
@@ -18,8 +19,19 @@ public class ConfigurationDAO extends DAO<Configuration>{
 
 	@Override
 	public boolean create(Configuration obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String insertion = "INSERT INTO Configuration (Type, Description, IdSpectacle) "
+					+ "values ('" + obj.getType() + "','" + obj.getDescription() + "','" + obj.getS().getIdSpectacle() + "');";
+			System.out.println(insertion);
+			
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
+			return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 	@Override
@@ -80,6 +92,25 @@ public class ConfigurationDAO extends DAO<Configuration>{
 
 	@Override
 	public Configuration find(Configuration t) {
+		Configuration s = new Configuration();
+		ResultSet result;
+		try {
+			result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Configuration WHERE Type = '" + t.getType()
+			                                                    + "' AND IdSpectacle = '" + t.getS().getIdSpectacle()
+			                                                    +  "'");
+	        if(result.last())
+	            s = new Configuration(result.getString("Type"), result.getString("Description"), t.getS(), result.getInt("IdConfiguration"));
+	        return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+			}	
+		}
+
+	@Override
+	public List<Configuration> findAll(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

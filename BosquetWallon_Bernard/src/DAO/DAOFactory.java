@@ -79,7 +79,7 @@ public class DAOFactory extends AbstractDAOFactory{
 	@Override
 	public DAO<Reservation> getReservationDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ReservationDAO(conn);
 	}
 
 	@Override

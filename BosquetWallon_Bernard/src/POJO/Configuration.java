@@ -14,6 +14,7 @@ public class Configuration {
 	private String description;
 	private List<Categorie> categorie;
 	private int Id;
+	private Spectacle s;
 	public Configuration(String Type, String Description, int id) {
 		type = Type;
 		description = Description;
@@ -21,6 +22,18 @@ public class Configuration {
 	}
 	public Configuration() {
 		// TODO Auto-generated constructor stub
+	}
+	public Configuration(String type2, String desc, Spectacle s1) {
+		type = type2;
+		description = desc;
+		s = s1;
+		
+	}
+	public Configuration(String type2, String desc, Spectacle s1, int int1) {
+		type = type2;
+		description = desc;
+		s = s1;
+		Id = int1;
 	}
 	public String getType() {
 		return type;
@@ -58,6 +71,19 @@ public class Configuration {
 	public List<Categorie> afficherCat(){
 		Categorie c = new Categorie();
 		return c.findAll(this.Id);
+	}
+	public Spectacle getS() {
+		return s;
+	}
+	public void setS(Spectacle s) {
+		this.s = s;
+	}
+	public boolean creer() {
+		return configurationDAO.create(this);
+	}
+	public Configuration find() {
+		// TODO Auto-generated method stub
+		return configurationDAO.find(this);
 	}
 	
 	

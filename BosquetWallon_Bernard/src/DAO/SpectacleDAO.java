@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import POJO.Artiste;
+import POJO.PlanningSalle;
 import POJO.Representation;
 import POJO.Spectacle;
 
@@ -19,8 +20,19 @@ public class SpectacleDAO extends DAO<Spectacle>{
 
 	@Override
 	public boolean create(Spectacle obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String insertion = "INSERT INTO Spectacle (Titre, IdSalle, NbrePlaceMax) "
+					+ "values ('" + obj.getTitre() + "','" + obj.getPlanningSalle().getId() + "','" + obj.getNbrPlaceParClient() + "');";
+			System.out.println(insertion);
+			
+				connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+						.executeUpdate(insertion);
+			return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 	@Override
@@ -49,8 +61,20 @@ public class SpectacleDAO extends DAO<Spectacle>{
 
 	@Override
 	public List<Spectacle> getAll(int i) {
-		return null;
+		List<Spectacle> ls = new ArrayList<Spectacle>();
+		try {
 	
+			String query = "SELECT Titre, IdSpectacle, NbrePlaceMAx FROM Spectacle WHERE IdSalle = " + i + " ;";
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery(query);
+				while(result.next()) {
+					Spectacle spectacle = new Spectacle(result.getString("Titre"), result.getInt("IdSpectacle"), result.getInt("NbrePlaceMax"));
+					ls.add(spectacle);
+				}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
 		}
 
 
@@ -96,6 +120,25 @@ public class SpectacleDAO extends DAO<Spectacle>{
 
 	@Override
 	public Spectacle find(Spectacle t) {
+		Spectacle s = new Spectacle();
+		ResultSet result;
+		try {
+			result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			        ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM Spectacle WHERE Titre = '" + t.getTitre()
+			                                                    + "' AND NbrePlaceMax = '" + t.getNbrPlaceParClient()
+			                                                    +  "'");
+	        if(result.last())
+	            s = new Spectacle(result.getString("Titre"), result.getInt("IdSpectacle"), result.getInt("NbrePlaceMax"), t.getPlanningSalle());
+	        return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Spectacle> findAll(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -28,6 +28,9 @@ public abstract class DAO<T> {
 	public abstract List<T> getAll(int i);
 
 	public abstract List<T> findAll(int id);
+	
+	public abstract List<T> findAll(Object obj);
+
 
 	public abstract List<T> getAll();
 

@@ -26,6 +26,14 @@ public class PlanningSalle {
 		id = Id;
 	}
 	
+	public PlanningSalle() {
+		// TODO Auto-generated constructor stub
+	}
+	public PlanningSalle(int int1, java.sql.Date date, java.sql.Date date2) {
+		id = int1;
+		dateDebutReservation = date;
+		dateFinReservation = date2;
+	}
 	public int getId() {
 		return id;
 	}
@@ -92,6 +100,13 @@ public class PlanningSalle {
 			}
 		}
 		return verif;
+	}
+	public boolean creer() {
+		return planningSalleDAO.create(this);
+	}
+	public PlanningSalle find() {
+		// TODO Auto-generated method stub
+		return planningSalleDAO.find(this);
 	}
 	
 	
